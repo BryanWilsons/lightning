@@ -1,0 +1,63 @@
+/* ID lists (CRIDs / MIDs) */
+.section-help {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: -8px 0 16px 0;
+}
+
+.id-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.id-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.add-btn {
+  background: none;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.add-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.remove-id-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 8px 6px;
+  line-height: 1;
+  margin-bottom: 2px;
+  border-radius: 6px;
+}
+
+.remove-id-btn:hover {
+  color: #ef4444;
+  background: #fef2f2;
+}
+
+@media (max-width: 700px) {
+  .id-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .remove-id-btn {
+    align-self: flex-end;
+  }
+}

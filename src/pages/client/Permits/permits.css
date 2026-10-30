@@ -1,0 +1,399 @@
+/* Custom react-tabs styling. Do NOT import react-tabs/style/react-tabs.css. */
+
+/* ── Tab bar ───────────────────────────────────────────── */
+.mailing-tabs .react-tabs__tab-list {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  margin: 0 0 24px;
+  padding: 6px 6px 0;
+  list-style: none;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.06);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.mailing-tabs .react-tabs__tab-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Individual tab ────────────────────────────────────── */
+.mailing-tabs .react-tabs__tab {
+  position: relative;
+  list-style: none;
+  padding: 12px 20px 14px;
+  border-radius: 8px 8px 0 0;
+  color: #64748b;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+/* animated underline indicator */
+.mailing-tabs .react-tabs__tab::after {
+  content: '';
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background: #1a4f9c;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s ease;
+}
+
+.mailing-tabs .react-tabs__tab:hover {
+  color: #1e293b;
+  background: #f8fafc;
+}
+
+.mailing-tabs .react-tabs__tab:hover::after {
+  background: #cbd5e1;
+  transform: scaleX(1);
+}
+
+/* ── Selected tab ──────────────────────────────────────── */
+.mailing-tabs .react-tabs__tab--selected,
+.mailing-tabs .react-tabs__tab--selected:hover {
+  color: #1a4f9c;
+  font-weight: 600;
+  background: linear-gradient(to bottom, rgba(26, 79, 156, 0) 0%, rgba(26, 79, 156, 0.07) 100%);
+}
+
+.mailing-tabs .react-tabs__tab--selected::after,
+.mailing-tabs .react-tabs__tab--selected:hover::after {
+  background: #1a4f9c;
+  transform: scaleX(1);
+}
+
+/* ── Focus / disabled ──────────────────────────────────── */
+.mailing-tabs .react-tabs__tab:focus {
+  outline: none;
+}
+
+.mailing-tabs .react-tabs__tab:focus-visible {
+  outline: 2px solid #1a4f9c;
+  outline-offset: -3px;
+}
+
+.mailing-tabs .react-tabs__tab--disabled {
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.mailing-tabs .react-tabs__tab--disabled:hover {
+  background: transparent;
+}
+
+/* ── Panels ────────────────────────────────────────────── */
+.mailing-tabs .react-tabs__tab-panel {
+  display: none;
+}
+
+.mailing-tabs .react-tabs__tab-panel--selected {
+  display: block;
+  animation: mailingTabFade 0.25s ease;
+}
+
+@keyframes mailingTabFade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mailing-tabs .react-tabs__tab,
+  .mailing-tabs .react-tabs__tab::after {
+    transition: none;
+  }
+  .mailing-tabs .react-tabs__tab-panel--selected {
+    animation: none;
+  }
+}
+
+/* ── Small screens ─────────────────────────────────────── */
+@media (max-width: 640px) {
+  .mailing-tabs .react-tabs__tab {
+    padding: 11px 14px 13px;
+  }
+  .mailing-tabs .react-tabs__tab::after {
+    left: 14px;
+    right: 14px;
+  }
+}
+
+
+/* =========================================
+   Mailing Setup — responsive layout
+========================================= */
+
+.mailing-dashboard-page {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.mailing-dashboard-page *,
+.mailing-dashboard-page *::before,
+.mailing-dashboard-page *::after {
+  box-sizing: border-box;
+}
+
+/* Page header */
+
+.mailing-dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.mailing-dashboard-header h1 {
+  margin: 0;
+  color: #172033;
+  font-size: clamp(1.65rem, 2.5vw, 2.1rem);
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -0.7px;
+}
+
+.mailing-dashboard-header p {
+  margin: 9px 0 0;
+  color: #64748b;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.mailing-dashboard-eyebrow {
+  display: block;
+  margin-bottom: 8px;
+  color: #2563eb;
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 1.5px;
+}
+
+/* Tabs container */
+
+.mailing-tabs {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Scrollable tab bar */
+
+.mailing-tab-scroll {
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-bottom: 1px solid #e2e8f0;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mailing-tab-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+
+.mailing-tab-scroll::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: #cbd5e1;
+}
+
+.mailing-tabs .react-tabs__tab-list {
+  display: flex;
+  align-items: stretch;
+  gap: 5px;
+  width: max-content;
+  min-width: 100%;
+  margin: 0;
+  padding: 0 0 1px;
+  border: 0;
+  list-style: none;
+}
+
+.mailing-tabs .react-tabs__tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-height: 47px;
+  margin: 0;
+  padding: 12px 17px;
+  border: 0;
+  border-radius: 8px 8px 0 0;
+  background: transparent;
+  color: #64748b;
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.35;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 150ms ease, background 150ms ease;
+}
+
+.mailing-tabs .react-tabs__tab:hover {
+  background: #f1f5f9;
+  color: #1e40af;
+}
+
+.mailing-tabs .react-tabs__tab--selected {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.mailing-tabs .react-tabs__tab--selected::after {
+  position: absolute;
+  right: 12px;
+  bottom: -1px;
+  left: 12px;
+  height: 3px;
+  border-radius: 4px 4px 0 0;
+  background: #2563eb;
+  content: '';
+}
+
+.mailing-tabs .react-tabs__tab:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: -3px;
+}
+
+.mailing-tabs .react-tabs__tab:focus:after {
+  background: #2563eb;
+}
+
+/* Tab panel */
+
+.mailing-tabs .react-tabs__tab-panel {
+  width: 100%;
+  min-width: 0;
+  padding-top: 22px;
+}
+
+.mailing-tabs .react-tabs__tab-panel--selected {
+  display: block;
+}
+
+/* Prevent wide child components from expanding the page */
+
+.mailing-tabs .react-tabs__tab-panel > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* =========================================
+   Tablet
+========================================= */
+
+@media (max-width: 900px) {
+  .mailing-dashboard-header {
+    margin-bottom: 20px;
+  }
+
+  .mailing-tabs .react-tabs__tab {
+    min-height: 45px;
+    padding: 11px 14px;
+    font-size: 0.82rem;
+  }
+
+  .mailing-tabs .react-tabs__tab-panel {
+    padding-top: 18px;
+  }
+}
+
+/* =========================================
+   Mobile
+========================================= */
+
+@media (max-width: 600px) {
+  .mailing-dashboard-page {
+    padding: 14px;
+  }
+
+  .mailing-dashboard-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .mailing-dashboard-header h1 {
+    font-size: 1.65rem;
+  }
+
+  .mailing-dashboard-header p {
+    max-width: 100%;
+    margin-top: 7px;
+    font-size: 0.84rem;
+  }
+
+  .mailing-dashboard-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 1.2px;
+  }
+
+  .mailing-tab-scroll {
+    margin-right: -1px;
+    border-radius: 7px 7px 0 0;
+  }
+
+  .mailing-tabs .react-tabs__tab-list {
+    gap: 3px;
+  }
+
+  .mailing-tabs .react-tabs__tab {
+    min-height: 43px;
+    padding: 10px 13px;
+    border-radius: 7px 7px 0 0;
+    font-size: 0.79rem;
+  }
+
+  .mailing-tabs .react-tabs__tab--selected::after {
+    right: 9px;
+    left: 9px;
+    height: 3px;
+  }
+
+  .mailing-tabs .react-tabs__tab-panel {
+    padding-top: 14px;
+  }
+}
+
+/* Small phones */
+
+@media (max-width: 380px) {
+  .mailing-dashboard-page {
+    padding: 10px;
+  }
+
+  .mailing-dashboard-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .mailing-tabs .react-tabs__tab {
+    padding: 10px 11px;
+    font-size: 0.76rem;
+  }
+
+  .mailing-tabs .react-tabs__tab-panel {
+    padding-top: 12px;
+  }
+}

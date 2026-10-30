@@ -1,0 +1,83 @@
+.idp-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.idp-caption { font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: .05em; }
+
+/* ── Phone shell ── */
+.idp-phone {
+  position: relative;
+  width: 330px;
+  border-radius: 38px;
+  background: #111;
+  padding: 12px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .25);
+   zoom: 0.85;  
+}
+.idp-notch {
+  position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+  width: 110px; height: 22px; background: #111; border-radius: 0 0 14px 14px; z-index: 2;
+}
+.idp-screen {
+  background: #fff; border-radius: 28px; overflow: hidden;
+  height: 600px; display: flex; flex-direction: column;
+}
+.idp-status {
+  display: flex; justify-content: space-between; padding: 8px 20px 4px;
+  font-size: 11px; font-weight: 600; background: #fff; color: #222;
+}
+.idp-email { flex: 1; overflow-y: auto; background: #fff; font-family: Arial, Helvetica, sans-serif; }
+
+/* ── Email header ── */
+.idp-mhead {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 14px 8px;
+}
+.idp-mhead-logo { font-size: 15px; font-weight: 800; color: #333366; letter-spacing: .01em; }
+.idp-mhead-title { font-size: 12px; color: #7f9fbf; }
+.idp-mhead-rule { height: 2px; background: #e8956b; margin: 0 14px 0 0; margin-left: 0; }
+
+/* ── Intro text ── */
+.idp-intro { padding: 12px 14px 0px; }
+.idp-intro h4 { margin: 0 0 8px; font-size: 14px; font-weight: 400; color: #6f93b8; }
+.idp-intro p { margin: 0 0 6px; font-size: 7.5px; line-height: 1.35; color: #222; }
+
+.idp-link { font-size: 7.5px; color: #1a4f9c; text-decoration: underline;  }
+.idp-link--off { color: #9aa7b8; }
+
+.idp-envicon {
+  width: 22px; height: 22px; border-radius: 50%; background: #7f9fd0; color: #fff;
+  display: flex; align-items: center; justify-content: center; font-size: 11px;
+  margin: 10px 0 6px 8px;
+}
+.idp-divider { border-top: 1px solid #ececec; margin: 0 14px; }
+
+/* ── Mailpiece ── */
+.idp-piece { padding: 8px 10px 4px; }
+.idp-scan { width: 100%; background: #9a9a9a; overflow: hidden; }
+.idp-scan-img { width: 100%; height: 100%; object-fit: contain; background: #9a9a9a; display: block; }
+.idp-default-scan { width: 100%; height: 100%; display: block; }
+
+/* ── Ride-along row ── */
+.idp-ride-row {
+  display: flex; align-items: center; gap: 12px;
+  margin-top: 5px; padding: 8px 0; border-top: 1px solid #ececec;
+}
+.idp-ride-img { flex: 0 0 48%; max-width: 48%; }
+.idp-ride-img img { width: 100%; height: auto; display: block; }
+.idp-ride-empty {
+  aspect-ratio: 3 / 2; display: flex; align-items: center; justify-content: center;
+  font-size: 9px; color: #8a96a8; text-align: center;
+  background: repeating-linear-gradient(45deg, #f6f7fa, #f6f7fa 8px, #eceef3 8px, #eceef3 16px);
+  border: 1px dashed #c3c9d6;
+}
+
+.idp-ride-meta { flex: 1; display: flex; flex-direction: column; gap: 14px; font-size: 8.5px; min-width: 0; }
+.idp-from { display: flex; gap: 6px; align-items: baseline; flex-wrap: wrap; }
+.idp-from-label { font-size: 7.5px; color: #555; letter-spacing: .04em; }
+.idp-from-name { color: #1a4f9c; font-size: 9px; overflow-wrap: anywhere; }
+.idp-view { display: flex; justify-content: space-between; align-items: center; }
+.idp-view .idp-link { font-size: 8.5px; }
+.idp-info {
+  width: 12px; height: 12px; border-radius: 50%; background: #7f9fd0; color: #fff;
+  font-size: 8px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+}
+
+@media (max-width: 767px) { .idp-phone { width: 290px; } .idp-screen { height: 540px; } }

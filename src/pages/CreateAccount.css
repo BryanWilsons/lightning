@@ -1,0 +1,497 @@
+
+/* ===== Lightning Presort Create Account ===== */
+
+.create-account-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  padding: 32px 24px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  box-sizing: border-box;
+}
+
+.create-account-page *,
+.create-account-page *::before,
+.create-account-page *::after {
+  box-sizing: border-box;
+}
+
+.create-account-bg-shape {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(59, 130, 246, 0.08) 0%,
+    transparent 70%
+  );
+  top: -200px;
+  right: -150px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.create-account-card {
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.04),
+    0 10px 15px -3px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.03);
+  position: relative;
+  z-index: 1;
+  margin: auto;
+}
+
+/* Logo */
+
+.create-account-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.create-account-logo img {
+  height: 145px;
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Header */
+
+.create-account-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.create-account-header h1 {
+  font-size: 1.75rem;
+  font-weight: 650;
+  color: #0f172a;
+  margin: 0 0 8px;
+  letter-spacing: -0.025em;
+}
+
+.create-account-header p {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Form */
+
+.create-account-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.create-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.create-form-group label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.create-optional {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.create-form-group input {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0f172a;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+}
+
+.create-form-group input::placeholder {
+  color: #94a3b8;
+}
+
+.create-form-group input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.create-form-group input:disabled {
+  background: #f8fafc;
+  cursor: not-allowed;
+}
+
+/* Package selection */
+
+.create-package-section {
+  margin-top: 4px;
+}
+
+.create-package-heading {
+  margin-bottom: 13px;
+}
+
+.create-package-heading h2 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 6px;
+}
+
+.create-package-heading p {
+  font-size: 0.825rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.create-package-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.create-package-option {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 13px 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background 0.15s,
+    box-shadow 0.15s;
+}
+
+.create-package-option:hover {
+  border-color: #93b4f7;
+}
+
+.create-package-option.selected {
+  border-color: #3b82f6;
+  background: #f5f8ff;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.08);
+}
+
+.create-package-option input[type='radio'] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #3b82f6;
+  cursor: pointer;
+}
+
+.create-package-option input[type='radio']:disabled {
+  cursor: not-allowed;
+}
+
+.create-package-name {
+  color: #0f172a;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.create-package-description {
+  color: #64748b;
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.create-package-option.selected .create-package-name {
+  color: #2563eb;
+}
+
+/* Additional information */
+
+.create-account-note {
+  padding: 12px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+/* Primary button */
+
+.create-account-btn {
+  width: 100%;
+  padding: 13px;
+  background: #0f172a;
+  color: white;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 560;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+}
+
+.create-account-btn:hover:not(:disabled) {
+  background: #1e293b;
+}
+
+.create-account-btn:active:not(:disabled) {
+  transform: scale(0.985);
+}
+
+.create-account-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Spinner */
+
+.create-account-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: create-account-spin 0.7s linear infinite;
+}
+
+@keyframes create-account-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error */
+
+.create-account-error {
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 0.875rem;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #fecaca;
+  line-height: 1.5;
+}
+
+/* Footer */
+
+.create-account-footer {
+  margin-top: 26px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.create-account-footer p {
+  margin: 0;
+}
+
+.create-account-footer a {
+  color: #3b82f6;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.create-account-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+  .create-account-page {
+    padding: 20px 12px;
+    align-items: flex-start;
+  }
+
+  .create-account-card {
+    padding: 30px 22px;
+    border-radius: 16px;
+  }
+
+  .create-account-logo img {
+    height: 95px;
+  }
+
+  .create-account-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .create-package-options {
+    grid-template-columns: 1fr;
+  }
+
+  .create-package-option {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr);
+    align-items: center;
+    gap: 5px 10px;
+    padding: 12px;
+  }
+
+  .create-package-option.selected {
+    padding: 12px;
+  }
+
+  .create-package-option input[type='radio'] {
+    grid-row: 1 / span 2;
+  }
+
+  .create-package-name,
+  .create-package-description {
+    grid-column: 2;
+  }
+}
+
+
+
+/* Required field indicator */
+
+.required-star {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* Inline field validation */
+
+.create-form-group input.input-error {
+  border-color: #dc2626;
+  background-color: #fffafa;
+}
+
+.create-form-group input.input-error:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.field-error {
+  display: block;
+  margin-top: 1px;
+  color: #b91c1c;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+/* Account administrator section */
+
+.admin-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px;
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+  background: #f8faff;
+}
+
+.admin-section-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.admin-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #e8efff;
+  color: #2563eb;
+}
+
+.admin-section-heading h2 {
+  margin: 0 0 6px;
+  color: #0f172a;
+  font-size: 0.98rem;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.admin-section-heading p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.admin-badge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 7px;
+  padding: 6px 9px;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.admin-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #3b82f6;
+}
+
+/* Package validation */
+
+.create-package-options.packages-error {
+  padding: 6px;
+  border: 1px solid #dc2626;
+  border-radius: 12px;
+  background: #fffafa;
+}
+
+.create-package-options:focus {
+
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .admin-section {
+    padding: 15px;
+  }
+
+  .admin-section-heading h2 {
+    font-size: 0.92rem;
+  }
+}

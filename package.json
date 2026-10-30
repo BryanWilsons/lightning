@@ -7,9 +7,17 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.20.0",
+    "jwt-decode": "^4.0.0",
+    "lucide-react": "^1.61.0",
     "react": "^19.3.0",
+    "react-confirm": "^0.5.0",
     "react-dom": "^19.3.0",
+    "react-router-dom": "^7.18.4",
     "react-scripts": "5.0.1",
+    "react-tabs": "^6.1.1",
+    "react-toastify": "^11.1.0",
+    "styled-components": "^6.6.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -20,8 +28,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {

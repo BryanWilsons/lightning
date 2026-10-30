@@ -1,0 +1,145 @@
+.setup-banner {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.setup-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+}
+
+.setup-banner-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background: #fef3c7;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d97706;
+}
+
+.setup-banner-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.setup-banner-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #92400e;
+  margin-bottom: 2px;
+}
+
+.setup-banner-desc {
+  font-size: 0.85rem;
+  color: #a16207;
+}
+
+.setup-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.setup-banner-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  background: #0f172a;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 550;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.setup-banner-btn:hover {
+  background: #1e293b;
+}
+
+.setup-banner-dismiss {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: #a16207;
+  cursor: pointer;
+  padding: 4px 6px;
+  line-height: 1;
+  border-radius: 6px;
+}
+
+.setup-banner-dismiss:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #78350f;
+}
+
+/* Multi-step progress */
+.setup-banner-steps {
+  display: flex;
+  gap: 4px;
+  padding: 0 18px 14px;
+  flex-wrap: wrap;
+}
+
+.setup-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  background: white;
+  border: 1px solid #fde68a;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #92400e;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+
+.setup-step:hover {
+  border-color: #f59e0b;
+  background: #fffbeb;
+}
+
+.setup-step.current {
+  background: #0f172a;
+  border-color: #0f172a;
+  color: white;
+}
+
+.step-number {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.setup-step.current .step-number {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .setup-banner-content {
+    flex-wrap: wrap;
+  }
+
+  .setup-banner-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
