@@ -1,0 +1,1040 @@
+
+.suppression-form-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px;
+  color: #263445;
+}
+
+.suppression-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 4px 0 28px;
+  border-bottom: 1px solid #e8edf2;
+  margin-bottom: 26px;
+}
+
+.suppression-eyebrow {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+
+.suppression-form-header h2 {
+  color: #1e293b;
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0 0 7px;
+}
+
+.suppression-form-header p {
+  color: #718096;
+  font-size: 14px;
+  margin: 0;
+}
+
+.suppression-header-icon,
+.suppression-section-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #edf3f9;
+  color: #345b80;
+  border-radius: 12px;
+}
+
+.suppression-header-icon {
+  width: 54px;
+  height: 54px;
+}
+
+.suppression-section {
+  background: #fff;
+  border: 1px solid #e5eaf0;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 22px;
+  box-shadow: 0 2px 8px rgba(20, 40, 60, 0.035);
+}
+
+.suppression-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 24px;
+}
+
+.suppression-section-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.suppression-section-heading h3 {
+  color: #263445;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.suppression-section-heading p {
+  color: #8190a2;
+  font-size: 12px;
+  margin: 0;
+}
+
+.suppression-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.suppression-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 7px;
+}
+
+.suppression-field.full {
+  grid-column: 1 / -1;
+}
+
+.suppression-field label {
+  color: #46566a;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.suppression-field label span {
+  color: #c34d4d;
+}
+
+.suppression-field input,
+.suppression-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 40px;
+  padding: 10px 12px;
+  border: 1px solid #dce3eb;
+  border-radius: 7px;
+  background: #fff;
+  color: #263445;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.suppression-field textarea {
+  resize: vertical;
+  min-height: 82px;
+}
+
+.suppression-field input::placeholder,
+.suppression-field textarea::placeholder {
+  color: #a6b0bc;
+}
+
+.suppression-field input:focus,
+.suppression-field textarea:focus {
+  border-color: #668db4;
+  box-shadow: 0 0 0 3px rgba(76, 122, 166, 0.1);
+}
+
+.suppression-seeds-heading {
+  margin-bottom: 20px;
+}
+
+.suppression-count {
+  margin-left: auto;
+  padding: 7px 12px;
+  background: #edf3f9;
+  color: #345b80;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.suppression-import-panel {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 19px;
+  background: #f8fafc;
+  border: 1px dashed #cbd6e2;
+  border-radius: 10px;
+}
+
+.suppression-import-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 220px;
+}
+
+.suppression-import-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  background: #eaf1f8;
+  color: #345b80;
+  border-radius: 9px;
+}
+
+.suppression-import-info strong {
+  display: block;
+  color: #334155;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.suppression-import-info p {
+  color: #8492a3;
+  font-size: 11px;
+  margin: 0;
+}
+
+.suppression-import-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border: 1px solid #cbd7e3;
+  border-radius: 7px;
+  background: #fff;
+  color: #345b80;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.suppression-import-button:hover {
+  background: #edf3f9;
+  border-color: #9eb4c9;
+}
+
+.suppression-import-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.suppression-file-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  color: #39805d;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.suppression-csv-help {
+  width: 100%;
+  padding-top: 13px;
+  border-top: 1px solid #e6ebf0;
+}
+
+.suppression-csv-help strong {
+  color: #526275;
+  font-size: 11px;
+}
+
+.suppression-csv-help p {
+  color: #718096;
+  font-size: 11px;
+  line-height: 1.7;
+  margin: 5px 0;
+}
+
+.suppression-csv-help small {
+  color: #9aa5b2;
+  font-size: 10px;
+}
+
+.suppression-manual-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin: 26px 0 15px;
+}
+
+.suppression-manual-heading strong {
+  display: block;
+  color: #334155;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.suppression-manual-heading span {
+  color: #8996a5;
+  font-size: 11px;
+}
+
+.suppression-add-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 13px;
+  border: none;
+  border-radius: 7px;
+  background: #345b80;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.18s ease;
+}
+
+.suppression-add-button:hover {
+  background: #284967;
+}
+
+.suppression-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 38px 20px;
+  border: 1px solid #edf0f4;
+  border-radius: 9px;
+  background: #fcfdfe;
+}
+
+.suppression-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  background: #edf3f9;
+  color: #587b9d;
+}
+
+.suppression-empty strong {
+  color: #445367;
+  font-size: 13px;
+}
+
+.suppression-empty p {
+  max-width: 360px;
+  color: #929eac;
+  font-size: 11px;
+  line-height: 1.6;
+  margin: 7px 0 0;
+}
+
+.suppression-seed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.suppression-seed-card {
+  padding: 20px;
+  border: 1px solid #e5eaf0;
+  border-radius: 9px;
+  background: #fff;
+}
+
+.suppression-seed-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 19px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #edf0f3;
+}
+
+.suppression-seed-card-header > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.suppression-record-number {
+  color: #8a98a8;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 1px;
+}
+
+.suppression-seed-card-header strong {
+  color: #334155;
+  font-size: 13px;
+}
+
+.suppression-remove-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 9px;
+  border: 1px solid #f0dddd;
+  border-radius: 6px;
+  background: #fff;
+  color: #b35c5c;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.suppression-remove-button:hover {
+  background: #fff5f5;
+  border-color: #e6bcbc;
+}
+
+.suppression-form-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 18px 0 8px;
+}
+
+.suppression-cancel-button,
+.suppression-save-button {
+  min-height: 40px;
+  padding: 0 19px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.suppression-cancel-button {
+  border: 1px solid #dce3eb;
+  background: #fff;
+  color: #64748b;
+}
+
+.suppression-cancel-button:hover {
+  background: #f7f9fb;
+}
+
+.suppression-save-button {
+  border: 1px solid #345b80;
+  background: #345b80;
+  color: #fff;
+}
+
+.suppression-save-button:hover {
+  background: #284967;
+}
+
+.suppression-save-button:disabled,
+.suppression-cancel-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.suppression-validation {
+  padding: 15px 18px;
+  margin-bottom: 20px;
+  border: 1px solid #f0d5d5;
+  border-radius: 8px;
+  background: #fff8f8;
+  color: #a34e4e;
+  font-size: 12px;
+}
+
+.suppression-validation strong {
+  display: block;
+  margin-bottom: 7px;
+}
+
+.suppression-validation ul {
+  margin: 0;
+  padding-left: 19px;
+  line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+  .suppression-form-container {
+    padding: 16px;
+  }
+
+  .suppression-section {
+    padding: 17px;
+  }
+
+  .suppression-fields-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .suppression-field.full {
+    grid-column: auto;
+  }
+
+  .suppression-import-panel {
+    align-items: flex-start;
+  }
+
+  .suppression-import-button {
+    width: 100%;
+  }
+
+  .suppression-seeds-heading {
+    flex-wrap: wrap;
+  }
+
+  .suppression-count {
+    margin-left: 0;
+  }
+
+  .suppression-form-footer {
+    flex-direction: column-reverse;
+  }
+
+  .suppression-cancel-button,
+  .suppression-save-button {
+    width: 100%;
+  }
+}
+
+
+/* CSV HEADER MAPPER */
+
+.csv-mapper {
+  width: 100%;
+  margin-top: 18px;
+}
+
+.csv-upload-area {
+  min-height: 175px;
+  padding: 30px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.csv-upload-area:hover {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.csv-upload-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #dbeafe;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.csv-upload-area strong {
+  color: #1e293b;
+  font-size: 15px;
+}
+
+.csv-upload-area span {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.csv-upload-area small {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.csv-file-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  margin-bottom: 22px;
+}
+
+.csv-file-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #2563eb;
+}
+
+.csv-file-info div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.csv-file-info strong {
+  color: #1e293b;
+  font-size: 14px;
+}
+
+.csv-file-info span {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.csv-clear-button,
+.csv-cancel-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid #cbd5e1;
+  background: white;
+  color: #475569;
+  border-radius: 7px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.csv-clear-button:hover,
+.csv-cancel-button:hover {
+  background: #f1f5f9;
+}
+
+.csv-mapping-heading,
+.csv-preview-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0 13px;
+}
+
+.csv-mapping-heading h3,
+.csv-preview-heading h3 {
+  margin: 0 0 5px;
+  color: #1e293b;
+  font-size: 16px;
+}
+
+.csv-mapping-heading p,
+.csv-preview-heading p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.csv-count {
+  white-space: nowrap;
+  color: #2563eb;
+  background: #eff6ff;
+  border-radius: 20px;
+  padding: 7px 11px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.csv-mapping-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+}
+
+.csv-mapping-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 570px;
+}
+
+.csv-mapping-table th {
+  padding: 12px 15px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.csv-mapping-table td {
+  padding: 11px 15px;
+  border-top: 1px solid #edf0f4;
+  color: #334155;
+  font-size: 13px;
+}
+
+.csv-mapping-table td strong {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.csv-mapping-table select {
+  width: 100%;
+  min-width: 160px;
+  padding: 9px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: white;
+  color: #334155;
+  font-size: 13px;
+}
+
+.csv-mapping-table select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.csv-sample-value {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.csv-sample-value span {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.csv-required-status {
+  margin: 14px 0;
+  font-size: 13px;
+}
+
+.csv-valid {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #15803d;
+  font-weight: 600;
+}
+
+.csv-warning {
+  color: #b45309;
+  font-weight: 600;
+}
+
+.csv-preview {
+  margin-top: 25px;
+  padding: 17px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #fafcff;
+}
+
+.csv-preview-heading {
+  margin-top: 0;
+}
+
+.csv-preview-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.csv-preview-controls button {
+  padding: 6px 10px;
+  border: 1px solid #cbd5e1;
+  background: white;
+  color: #334155;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.csv-preview-controls button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.csv-preview-controls span {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.csv-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 17px;
+}
+
+.csv-preview-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.csv-preview-field span {
+  color: #64748b;
+  font-size: 11px;
+}
+
+.csv-preview-field strong {
+  color: #1e293b;
+  font-size: 13px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.csv-import-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.csv-import-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 17px;
+  border: none;
+  border-radius: 7px;
+  background: #2563eb;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.csv-import-button:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.csv-import-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 700px) {
+  .csv-mapping-heading,
+  .csv-preview-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .csv-preview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .csv-file-heading {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 450px) {
+  .csv-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .csv-import-actions {
+    flex-direction: column-reverse;
+  }
+
+  .csv-import-actions button {
+    width: 100%;
+  }
+}
+
+
+/* Pager, toolbar and validation styles for AddSuppressionList */
+
+/* ---------- Pager ---------- */
+.suppression-pager-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.suppression-pager-nav.bottom {
+  margin-bottom: 0;
+}
+
+.suppression-pager-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  background: #fff;
+  color: inherit;
+  cursor: pointer;
+}
+
+.suppression-pager-arrow:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.suppression-pager-arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.suppression-pager-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.suppression-pager-status input {
+  width: 64px;
+  min-height: 40px;
+  text-align: center;
+  font-size: 16px; /* prevents iOS zoom */
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 4px;
+}
+
+/* ---------- Toolbar / buttons ---------- */
+.suppression-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.suppression-secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  border-radius: 10px;
+  background: #fff;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.suppression-secondary-button:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.suppression-import-panel .suppression-secondary-button {
+  margin-top: 12px;
+}
+
+.suppression-link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #2563eb;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ---------- Status ---------- */
+.suppression-incomplete-banner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #fff7e6;
+  border: 1px solid #f5d28a;
+  color: #8a5a00;
+  font-size: 0.9rem;
+}
+
+.suppression-incomplete-banner .suppression-link-button {
+  margin-left: auto;
+  color: #8a5a00;
+}
+
+.suppression-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.suppression-badge.ok {
+  background: #e6f6ec;
+  color: #1a7f3c;
+}
+
+.suppression-badge.warn {
+  background: #fff1d6;
+  color: #8a5a00;
+}
+
+.suppression-field.is-missing input,
+.suppression-field.is-missing textarea {
+  border-color: #dc2626;
+  background: #fff5f5;
+}
+
+.suppression-hint {
+  margin: 12px 0 0;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 640px) {
+  .suppression-toolbar {
+    flex-direction: column;
+  }
+
+  .suppression-toolbar > button {
+    width: 100%;
+  }
+
+  .suppression-incomplete-banner .suppression-link-button {
+    margin-left: 0;
+    flex-basis: 100%;
+  }
+
+  .suppression-badge {
+    display: flex;
+    width: fit-content;
+    margin: 6px 0 0;
+  }
+}

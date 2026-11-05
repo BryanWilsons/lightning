@@ -7,6 +7,7 @@ import MailOwnersDashboard from './mailowners/MailOwnerDashboard';
 import './permits.css';
 import MailProvidersDashboard from './providers/ProvidersDash';
 import ProductsDashboard from './Products/ProductsDashboard';
+import DNMListDashboard from './DNMList/DNMListDashboard';
 
 const ComingSoon = ({ title, description }) => (
   <section className="card">
@@ -58,10 +59,10 @@ const TABS = [
     ),
   },
   {
-    key: 'do-not-mail',
+    key: 'suppress',
     label: 'Do Not Mail (Suppression) Lists',
     render: () => (
-      <ComingSoon
+      <DNMListDashboard
         title="Do Not Mail (Suppression) Lists"
         description="Upload and manage suppression lists."
       />

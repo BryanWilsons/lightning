@@ -2,7 +2,7 @@ import axios from "axios";
 
 const api = axios.create({
  
- // baseURL: "https://lightningapi-80f094000270.herokuapp.com/", // your backend URL
+ //baseURL: "https://lightningapi-80f094000270.herokuapp.com/", // your backend URL
   baseURL: "http://localhost:5009", // your backend URL
   withCredentials: true, // CRITICAL – sends the HttpOnly cookie
   headers: {

@@ -1,0 +1,208 @@
+/* ==========================================================
+   SuppressionForm – responsive / mobile overrides
+   Import this AFTER SuppressionForm.css so it wins on cascade:
+     import './SuppressionForm.css';
+     import './SuppressionForm.mobile.css';
+   ========================================================== */
+
+.suppression-form-container,
+.suppression-form-container * {
+  box-sizing: border-box;
+}
+
+.suppression-form-container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Let grid/flex children shrink instead of forcing horizontal scroll */
+.suppression-fields-grid > *,
+.suppression-form-header > *,
+.suppression-section-heading > *,
+.suppression-manual-heading > *,
+.suppression-seed-card-header > * {
+  min-width: 0;
+}
+
+.suppression-field input,
+.suppression-field textarea,
+.suppression-field select {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ---------- Tablet and down ---------- */
+@media (max-width: 900px) {
+  .suppression-fields-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 640px) {
+  .suppression-form-container {
+    padding: 12px;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  /* Header */
+  .suppression-form-header {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .suppression-form-header h2 {
+    font-size: 1.25rem;
+    line-height: 1.25;
+  }
+
+  .suppression-form-header p {
+    font-size: 0.875rem;
+  }
+
+  .suppression-header-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Sections */
+  .suppression-section {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .suppression-section-heading {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .suppression-section-icon {
+    flex-shrink: 0;
+  }
+
+  .suppression-section-heading > div:not(.suppression-section-icon):not(.suppression-count) {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .suppression-count {
+    margin-left: 0;
+    flex-basis: 100%;
+    width: fit-content;
+  }
+
+  /* Forms: single column, and 16px font stops iOS zoom-on-focus */
+  .suppression-fields-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .suppression-field.full {
+    grid-column: auto;
+  }
+
+  .suppression-field input,
+  .suppression-field textarea,
+  .suppression-field select {
+    font-size: 16px;
+    min-height: 44px;
+  }
+
+  /* Import panel */
+  .suppression-import-panel,
+  .suppression-form-section {
+    padding: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .suppression-file-name {
+    word-break: break-all;
+  }
+
+  /* Manual entry heading: stack and make the button full width */
+  .suppression-manual-heading {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .suppression-manual-heading > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .suppression-add-button {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  /* Record cards */
+  .suppression-seed-card {
+    padding: 14px;
+  }
+
+  .suppression-seed-card-header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .suppression-seed-card-header > div:first-child {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .suppression-remove-button {
+    min-height: 40px;
+    flex-shrink: 0;
+  }
+
+  .suppression-empty {
+    padding: 24px 16px;
+  }
+
+  /* Footer: stacked, sticky, thumb-friendly */
+  .suppression-form-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    flex-direction: column-reverse;
+    gap: 10px;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    margin: 0 -12px;
+    background: #fff;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .suppression-cancel-button,
+  .suppression-save-button {
+    width: 100%;
+    min-height: 46px;
+    justify-content: center;
+  }
+
+  /* Validation box */
+  .suppression-validation {
+    font-size: 0.875rem;
+    padding: 12px 14px;
+  }
+}
+
+/* ---------- Very small phones ---------- */
+@media (max-width: 380px) {
+  .suppression-form-container {
+    padding: 8px;
+  }
+
+  .suppression-section,
+  .suppression-seed-card {
+    padding: 12px;
+  }
+}

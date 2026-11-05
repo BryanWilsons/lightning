@@ -153,7 +153,7 @@ const deleteMailOwner = async (c) => {
   const payload = { id: c._id };
 
   try {
-    await api.delete('permits/removeprovider', {
+    await api.delete('permits/provider', {
       data: payload,
     });
 

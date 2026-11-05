@@ -29,6 +29,8 @@ import NewProvider from './pages/client/Permits/providers/NewProvider';
 import ProductsDashboard from './pages/client/Permits/Products/ProductsDashboard';
 import Product from './pages/client/Permits/Products/Product';
 
+import DNMList from './pages/client/Permits/DNMList/DNMList'
+
 
 // Navigation config
 const NAV = {
@@ -230,6 +232,7 @@ const [listProcessingOpen, setListProcessingOpen] = useState(
               </Route>
 
    <Route path="/permits" element={<PermitDashboard />}>
+
     <Route path="owner" element={<NewMailOwner />}/>
       <Route path="owner/:id" element={<NewMailOwner />}/>
 
@@ -241,6 +244,10 @@ const [listProcessingOpen, setListProcessingOpen] = useState(
 
  <Route path="product" element={<Product />}/>
 <Route path="product/:id" element={<Product />}/>
+
+ <Route path="suppress" element={<DNMList />}/>
+<Route path="suppress/:id" element={<DNMList />}/>
+
    </Route>
               {/* Default redirect */}
               <Route path="*" element={<Navigate to="/" replace />} />
