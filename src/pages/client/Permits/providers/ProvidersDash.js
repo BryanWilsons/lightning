@@ -292,7 +292,7 @@ const stats = useMemo(
                   : 'Try changing your search or status filter.'}
               </p>
 
-              {crids.length === 0 && (
+              {/* {crids.length === 0 && (
                 <button
                   type="button"
                   className="mail-add-button mail-empty-button"
@@ -300,7 +300,7 @@ const stats = useMemo(
                 >
                   + Add Mail Provider
                 </button>
-              )}
+              )} */}
             </div>
           ) : (
            <div className="mail-table-scroll" style={{height:'35vh'}}>

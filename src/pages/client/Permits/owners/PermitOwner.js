@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import './../mailowners/MailOwners.css';
 import api from '../../../../Helpers/Api';
@@ -8,7 +7,8 @@ import { useAuth } from '../../../../context/AuthContext';
 import { normalizedFacilities } from '../../../../util/Normalizedfacilities';
 import FacilitySearchSelect from '../../../../Helpers/FacilitySelector';
 import ValidationSummary from '../../../../Helpers/Valiodationsummary'; // adjust path
-
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { buildSavedItem, goBackToCaller, returnToCaller } from '../../../../Helpers/returnToCaller';
 
 
 const FIELD_LABELS = {
@@ -112,6 +112,7 @@ const PermitOwner = () => {
   const [isLoading, setIsLoading] = useState(isEdit);
   const [isSubmitting, setIsSubmitting] = useState(false);
 const [apiErrors, setApiErrors] = useState([]);
+const location = useLocation();
 const [showValidationSummary, setShowValidationSummary] = useState(false);
   useEffect(() => {
     if (!isEdit) return;
@@ -207,7 +208,15 @@ const validate = () => {
 };
 
 
-console.log(errors)
+  const goBack = () => {
+  if (location.state?.returnTo) {
+    navigate(location.state.returnTo, {
+      state: { returnData: location.state.returnData },
+    });
+  } else {
+    navigate('/permits');
+  }
+};
 
 const showSummary = () => {
   setShowValidationSummary(true);
@@ -238,15 +247,33 @@ const handleSubmit = async (e) => {
       ...(isEdit ? { id } : {}),
     };
 
-    if (isEdit) {
-      await api.put('/permits/updatepermitholders', payload);
-      toast.success('Permit updated successfully');
-    } else {
-      await api.post('/permits/addpermitholder', payload);
-      toast.success('Permit added successfully');
-    }
+   let response;
 
-    navigate('/permits?tab=permit-owner');
+if (isEdit) {
+  response = await api.put('/permits/updatepermitholders', payload);
+  toast.success('Permit updated successfully');
+} else {
+  response = await api.post('/permits/addpermitholder', payload);
+  toast.success('Permit added successfully');
+}
+
+if (!isEdit && location.state?.returnTo) {
+  const savedPermit = buildSavedItem({
+    responseData: response.data,
+    keys: ['item', 'permitholder', 'permitHolder', 'permit'],
+    payload,
+  });
+
+  if (!savedPermit._id) {
+    toast.error('Permit was saved, but the API did not return its ID.');
+    return;
+  }
+
+  returnToCaller(navigate, location, 'permitHolder', savedPermit);
+  return;
+}
+
+navigate('/permits?tab=permit-owner');
   } catch (err) {
     setApiErrors(parseApiErrors(err));
     toast.error('Unable to save. Review the errors below.');
@@ -351,7 +378,7 @@ const handleSubmit = async (e) => {
         <button
           type="button"
           className="btn-primary"
-          onClick={() => navigate('/permits?tab=permit-owner')}
+        onClick={() => goBackToCaller(navigate, location, '/permits')}
         >
           ← Back to Permit Owners
         </button>
@@ -373,7 +400,6 @@ const handleSubmit = async (e) => {
       onDismiss={() => setShowValidationSummary(false)}
     />
   )}
-  ...
 {/* Owner Information */}
 <section className="card">
   <div className="card-header">
@@ -581,9 +607,30 @@ const handleSubmit = async (e) => {
 </div>
 </section>
 
+  <div className="suppression-form-footer">
+          <button
+            type="button"
+            className="suppression-cancel-button"
+        onClick={() => goBackToCaller(navigate, location, '/permits')}
+            disabled={isSubmitting}
+          >
+            Cancel
+          </button>
 
+          <button
+            type="submit"
+            className="suppression-save-button"
+            disabled={isSubmitting}
+          >
+           {isSubmitting
+      ? 'Saving...'
+      : isEdit
+        ? 'Update Permit Owner'
+        : 'Save Permit Owner'}
+          </button>
+        </div>
 
-<div className="pt-2">
+{/* <div className="pt-2">
   <button
     type="submit"
     disabled={isSubmitting}
@@ -595,7 +642,7 @@ const handleSubmit = async (e) => {
         ? 'Update Permit'
         : 'Save Permit'}
   </button>
-</div>
+</div> */}
 
       </form>
     </div>

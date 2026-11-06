@@ -30,6 +30,8 @@ import ProductsDashboard from './pages/client/Permits/Products/ProductsDashboard
 import Product from './pages/client/Permits/Products/Product';
 
 import DNMList from './pages/client/Permits/DNMList/DNMList'
+import SeedsList from './pages/client/Permits/Seeds/SeedsList';
+import NewJob from './pages/Jobs/Newjob';
 
 
 // Navigation config
@@ -42,12 +44,18 @@ const NAV = {
       C: ClientOverview,
     },
     {
+      path: '/jobs',
+      label: 'Presorting Jobs',
+      icon: ICONS.life,
+      C: ClientInformed,
+    },
+    {
       path: '/permits',
       label: 'List Processing',
       icon: ICONS.files,
       children: [
         {
-          path: '/permits/submit-job',
+          path: '/jobs',
           label: 'Submit New Job',
         },
         {
@@ -231,6 +239,11 @@ const [listProcessingOpen, setListProcessingOpen] = useState(
                 <Route path=":id/edit" element={<NewCampaignForm />} />
               </Route>
 
+ <Route path="/jobs" element={<NewJob />}>
+ 
+ </Route>
+
+
    <Route path="/permits" element={<PermitDashboard />}>
 
     <Route path="owner" element={<NewMailOwner />}/>
@@ -247,6 +260,9 @@ const [listProcessingOpen, setListProcessingOpen] = useState(
 
  <Route path="suppress" element={<DNMList />}/>
 <Route path="suppress/:id" element={<DNMList />}/>
+
+ <Route path="seeds" element={<SeedsList />}/>
+<Route path="seeds/:id" element={<SeedsList />}/>
 
    </Route>
               {/* Default redirect */}

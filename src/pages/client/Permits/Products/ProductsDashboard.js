@@ -248,7 +248,7 @@ const deleteProduct = async (product) => {
                   : 'Try changing your search.'}
               </p>
 
-              {products.length === 0 && (
+              {/* {products.length === 0 && (
                 <button
                   type="button"
                   className="mail-add-button mail-empty-button"
@@ -256,7 +256,7 @@ const deleteProduct = async (product) => {
                 >
                   + Add Product
                 </button>
-              )}
+              )} */}
             </div>
           ) : (
             <div className="mail-table-scroll" style={{ height: '35vh' }}>

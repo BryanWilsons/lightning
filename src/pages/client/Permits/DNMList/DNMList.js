@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { useNavigate, useParams, useSearchParams, useLocation } from 'react-router-dom';
 
 
 import { toast } from 'react-toastify';
@@ -98,6 +98,17 @@ const [pageLoading, setPageLoading] = useState(isEdit);
     [form.seeds]
   );
 
+const descriptionRef = useRef(null);
+
+useEffect(() => {
+  const textarea = descriptionRef.current;
+
+  if (textarea) {
+    textarea.style.height = 'auto';
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  }
+}, [form.description]);
+
 
   useEffect(() => {
   if (!id || !user?.company?._id) return;
@@ -129,7 +140,7 @@ const [pageLoading, setPageLoading] = useState(isEdit);
     } catch (error) {
       if (cancelled) return;
       toast.error(error.response?.data?.error || 'Unable to load suppression list.');
-      navigate('../');
+      navigate('/permits?tab=suppress');
     } finally {
       if (!cancelled) setPageLoading(false);
     }
@@ -166,6 +177,21 @@ const [pageLoading, setPageLoading] = useState(isEdit);
     }
     goTo(n - 1);
   };
+
+  const handleTextarea = (e) => {
+  const textarea = e.target;
+
+  // Reset height to recalculate
+  textarea.style.height = 'auto';
+
+  // Expand to fit content
+  textarea.style.height = `${textarea.scrollHeight}px`;
+
+  setForm((prev) => ({
+    ...prev,
+    description: textarea.value
+  }));
+};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -379,20 +405,20 @@ const handleCsvImport = (importedSeeds, mode = 'add') => {
     <div className="suppression-form-container">
       <form onSubmit={handleSubmit}>
         {/* Header */}
-        <div className="suppression-form-header">
-          <div>
-            <div className="suppression-eyebrow">MAIL MANAGEMENT</div>
-            <h2>Create Suppression List</h2>
-            <p>
-              Create and manage the addresses you want excluded from your
-              mailing campaigns.
-            </p>
-          </div>
-
-          <div className="suppression-header-icon">
-            <Users size={25} />
-          </div>
+   <div className="dashboard-header">
+        <div>
+          <h1>{isEdit ? 'Edit Suppression List' : 'Add Suppression List'}</h1>
+          {/* <p>Manage mail owner.</p> */}
         </div>
+
+        <button
+          type="button"
+          className="btn-primary"
+       onClick={() => navigate('/permits?tab=suppress')}
+        >
+          ← Back to Suppression List
+        </button>
+      </div>
 
         {/* Validation */}
         {errors.length > 0 && (
@@ -437,8 +463,9 @@ const handleCsvImport = (importedSeeds, mode = 'add') => {
             </div>
           </div>
 
-          <div className="suppression-fields-grid">
+          <div className="suppression-fields-grid" style={{display:'flex'}}>
             <div
+            style={{flex:'1'}}
               className={`suppression-field full${
                 showErrors && !form.suppressionListName.trim() ? ' is-missing' : ''
               }`}
@@ -454,23 +481,30 @@ const handleCsvImport = (importedSeeds, mode = 'add') => {
                 placeholder="Example: Customer Suppression List"
               />
             </div>
-{/* 
+
             <div
+               style={{flex:'1'}}
               className={`suppression-field full${
                 showErrors && !form.description.trim() ? ' is-missing' : ''
               }`}
             >
               <label>
-                Description <span>*</span>
-              </label>
-              <textarea
-                name="description"
-                value={form.description}
-                onChange={handleChange}
-                placeholder="Describe the purpose of this suppression list..."
-                rows={3}
-              />
-            </div> */}
+                Description <span>*</span></label>
+         <textarea
+          ref={descriptionRef}
+  name="description"
+  value={form.description}
+  onChange={handleTextarea}
+  placeholder="Describe the purpose of this suppression list..."
+  rows={1}
+  style={{
+    minHeight: '38px',
+    resize: 'none',
+    overflow: 'hidden',
+    boxSizing: 'border-box'
+  }}
+/>
+            </div>
           </div>
       
           <div className="suppression-section-heading suppression-seeds-heading mt-10">
@@ -768,7 +802,7 @@ const handleCsvImport = (importedSeeds, mode = 'add') => {
           <button
             type="button"
             className="suppression-cancel-button"
-            onClick={() => navigate('../')}
+            onClick={() => navigate('/permits?tab=suppress')}
             disabled={loading}
           >
             Cancel

@@ -8,6 +8,7 @@ import './permits.css';
 import MailProvidersDashboard from './providers/ProvidersDash';
 import ProductsDashboard from './Products/ProductsDashboard';
 import DNMListDashboard from './DNMList/DNMListDashboard';
+import SeedListDashboard from './Seeds/SeedsListDashboard';
 
 const ComingSoon = ({ title, description }) => (
   <section className="card">
@@ -69,10 +70,10 @@ const TABS = [
     ),
   },
   {
-    key: 'seed-lists',
+    key: 'seeds',
     label: 'Seed Lists',
     render: () => (
-      <ComingSoon
+      <SeedListDashboard
         title="Seed Lists"
         description="Manage seed lists for mail tracking."
       />

@@ -1,14 +1,14 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
-import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, Package, Ruler, Scale, Save, Calculator, AlertTriangle } from 'lucide-react';
 import axios from 'axios';
 import getUSPSSortation from '../../../../util/Sortation';
 import './product.css';
 import { useAuth } from '../../../../context/AuthContext';
 import api from '../../../../Helpers/Api';
-
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { buildSavedItem, goBackToCaller, returnToCaller } from '../../../../Helpers/returnToCaller';
 
 import ValidationSummary from '../../../../Helpers/Valiodationsummary';
 
@@ -126,7 +126,7 @@ const Product = ({
     mailClass: product?.mailClass || 'First-Class Mail',
     sortation: product?.sortation || '',
   });
-
+const location = useLocation();
   const [sortationResult, setSortationResult] = useState({
     mailShape: '',
     aspectRatio: '',
@@ -400,6 +400,18 @@ const sortationInput = {
   // Submit
   // ---------------------------------------
 
+
+  const goBack = () => {
+  if (location.state?.returnTo) {
+    navigate(location.state.returnTo, {
+      state: { returnData: location.state.returnData },
+    });
+  } else {
+    navigate('/permits?tab=products');
+  }
+};
+
+
 const handleSubmit = async (e) => {
   e.preventDefault();
 
@@ -463,15 +475,42 @@ const handleSubmit = async (e) => {
   try {
     const res = await api.post('/products/add', payload);
 
-    toast.success(
-      res.data.message ||
-      `Product ${isEditing ? 'updated' : 'added'} successfully.`
-    );
+toast.success(
+  res.data.message ||
+  `Product ${isEditing ? 'updated' : 'added'} successfully.`
+);
 
-    setProduct?.(null);
-    setReset?.(!reset);
+setProduct?.(null);
+setReset?.(!reset);
 
-   navigate('/permits?tab=products'); 
+if (!isEditing && location.state?.returnTo) {
+  const savedProduct = buildSavedItem({
+    responseData: res.data,
+    keys: ['item', 'product'],
+    payload,
+  });
+
+  if (!savedProduct._id) {
+    toast.error('Product was saved, but the API did not return its ID.');
+    return;
+  }
+
+  returnToCaller(navigate, location, 'product', savedProduct);
+  return;
+}
+
+navigate('/permits?tab=products');
+  //   const res = await api.post('/products/add', payload);
+
+  //   toast.success(
+  //     res.data.message ||
+  //     `Product ${isEditing ? 'updated' : 'added'} successfully.`
+  //   );
+
+  //   setProduct?.(null);
+  //   setReset?.(!reset);
+
+  //  navigate('/permits?tab=products'); 
   
 
   } catch (err) {
@@ -529,8 +568,8 @@ if (isLoading) {
               type="button"
                       className="btn-primary"
 
-              onClick={  () =>   navigate('/permits?tab=products')
-}
+              // onClick={  () =>   navigate('/permits?tab=products')}
+              onClick={() => goBackToCaller(navigate, location, '/permits?tab=products')}
             >
               <ArrowLeft size={16} />
               Back to Products
@@ -829,7 +868,30 @@ if (isLoading) {
           </section>
 
           {/* Form Actions */}
+          <div className="suppression-form-footer">
+          <button
+            type="button"
+            className="suppression-cancel-button"
+            // onClick={() => navigate('/permits?tab=products')}
+            onClick={() => goBackToCaller(navigate, location, '/permits?tab=products')}
+            disabled={saving}
+          >
+            Cancel
+          </button>
 
+          <button
+            type="submit"
+            className="suppression-save-button"
+            disabled={saving}
+          >
+            {saving
+              ? 'Saving...'
+              : isEditing
+                ? 'Update product'
+                : 'Save product'}
+          </button>
+        </div>
+{/* 
           <div className="product-form-actions">
 
             {/* <button
@@ -839,7 +901,7 @@ if (isLoading) {
               disabled={saving}
             >
               Cancel
-            </button> */}
+            </button>
 
             <button
               type="submit"
@@ -859,7 +921,7 @@ if (isLoading) {
               )}
             </button>
 
-          </div>
+          </div> */}
 
         </form>
       </div>

@@ -7,7 +7,7 @@ import api, { setAccessToken, setTokenHandlers } from "../../../../Helpers/Api";
 import FacilitySearchSelect from '../../../../Helpers/FacilitySelector';
 import ValidationSummary from '../../../../Helpers/Valiodationsummary'; // adjust path
 import { normalizedFacilities } from '../../../../util/Normalizedfacilities';
-
+import { buildSavedItem, goBackToCaller, returnToCaller } from '../../../../Helpers/returnToCaller';
 
 
 
@@ -195,82 +195,6 @@ setFormData({
     fetchMailOwner();
   }, [id, isEdit]);
 
-  const handleMidChange = (index, value) => {
-  const nextValue = value.replace(/\D/g, '').slice(0, 9);
-
-setFormData({
-  ...EMPTY,
-  ...formData,
-
-  // Company and USPS names
-  company: formData.company ?? '',
-  companyName:
-    formData.companyName ??
-    formData.providerName ??
-    formData.name ??
-    '',
-  mailOwnerName:
-    formData.mailOwnerName ??
-    formData.name ??
-    formData.providerName ??
-    '',
-
-  // Address
-  address: formData.address ?? '',
-  address2: formData.address2 ?? '',
-  city: formData.city ?? '',
-  state: formData.state ?? 'FL',
-  zip: formData.zip ?? '',
-
-  // USPS identifiers
-  crid: String(formData.crid ?? ''),
-  mid: String(formData.mid ?? ''),
-  mailerIds:
-    Array.isArray(formData.mailerIds) && formData.mailerIds.length
-      ? formData.mailerIds.map(String)
-      : formData.mid
-        ? [String(formData.mid)]
-        : [''],
-
-  // Representative information
-  repemail: formData.repemail ?? '',
-  repname: formData.repname ?? '',
-  repphone: formData.repphone ?? '',
-
-  // Boolean fields
-  einduction: formData.einduction ?? false,
-  seamless: formData.seamless ?? false,
-
-  // Optional fields
-  nonprofitnumber: formData.nonprofitnumber ?? '',
-  anywhere: formData.anywhere ?? '',
-});
-
-  setErrors((prev) => ({
-    ...prev,
-    mailerIds: '',
-  }));
-};
-
-const addMid = () => {
-  setFormData((prev) => ({
-    ...prev,
-    mailerIds: [...prev.mailerIds, ''],
-  }));
-};
-
-const removeMid = (index) => {
-  setFormData((prev) => ({
-    ...prev,
-    mailerIds: prev.mailerIds.filter((_, i) => i !== index),
-  }));
-
-  setErrors((prev) => ({
-    ...prev,
-    mailerIds: '',
-  }));
-};
-
 
  const handleChange = (e) => {
   const { name, value } = e.target;
@@ -415,38 +339,22 @@ const validate = () => {
     }
 
     if (!isEdit && location.state?.returnTo) {
-      const responseData = response.data;
+  const savedProvider = buildSavedItem({
+    responseData: response.data,
+    keys: ['item', 'provider', 'mailprovider', 'mailProvider'],
+    payload,
+  });
 
-      const returnedProvider =
-        responseData?.provider ||
-        responseData?.data?.provider ||
-        responseData?.data ||
-        responseData;
+  if (!savedProvider._id) {
+    toast.error('Provider was saved, but the API did not return its ID.');
+    return;
+  }
 
-      navigate(location.state.returnTo, {
-        replace: true,
-        state: {
-          campaignDraft: location.state.campaignDraft,
-          createdMailProvider: {
-            ...payload,
-            ...returnedProvider,
-            providerName:
-              returnedProvider?.providerName ??
-              returnedProvider?.name ??
-              payload.providerName,
-            _id:
-              returnedProvider?._id ??
-              returnedProvider?.id ??
-              payload._id ??
-              '',
-          },
-        },
-      });
+  returnToCaller(navigate, location, 'mailProvider', savedProvider);
+  return;
+}
 
-      return;
-    }
-
-    navigate('/permits?tab=mail-providers');
+navigate('/permits?tab=mail-providers');
   } catch (err) {
     setApiErrors(parseApiErrors(err));
     toast.error('Unable to save. Review the errors below.');
@@ -524,17 +432,7 @@ const validate = () => {
         <button
           type="button"
           className="btn-primary"
-       onClick={() => {
-  if (location.state?.returnTo) {
-    navigate(location.state.returnTo, {
-      state: {
-        campaignDraft: location.state.campaignDraft,
-      },
-    });
-  } else {
-    navigate('/permits?tab=mail-providers');
-  }
-}}
+          onClick={() => goBackToCaller(navigate, location, '/permits?tab=mail-providers')}
         >
           ← Back to Mail Providers
         </button>
@@ -796,7 +694,30 @@ const validate = () => {
  
   </section>
 
-  <div className="pt-2">
+ <div className="suppression-form-footer">
+          <button
+            type="button"
+            className="suppression-cancel-button"
+             onClick={() => goBackToCaller(navigate, location, '/permits?tab=mail-providers')}
+        
+            disabled={isSubmitting}
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            className="suppression-save-button"
+            disabled={isSubmitting}
+          >
+            {isSubmitting
+              ? 'Saving...'
+              : isEdit
+                ? 'Update Mail Providers'
+                : 'Save Mail Providers'}
+          </button>
+        </div>
+  {/* <div className="pt-2">
     <button
       type="submit"
       disabled={isSubmitting}
@@ -808,7 +729,7 @@ const validate = () => {
           ? 'Update Mail Provider'
           : 'Save Mail Provider'}
     </button>
-  </div>
+  </div> */}
 </form>
     </div>
   );

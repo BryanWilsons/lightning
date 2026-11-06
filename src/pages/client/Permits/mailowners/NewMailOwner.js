@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import './MailOwners.css'
 import { useAuth } from '../../../../context/AuthContext';
 import api, { setAccessToken, setTokenHandlers } from "../../../../Helpers/Api";
-
+import { goBackToCaller } from '../../../../Helpers/returnToCaller';
 import ValidationSummary from '../../../../Helpers/Valiodationsummary'; // adjust path
 
 const FIELD_LABELS = {
@@ -297,104 +297,122 @@ const enteredMids = (formData.mailerIds || [])
 
 
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
-  setApiErrors([]);
 
+  // Validate using your existing validation function
   if (!validate()) {
+    setShowValidationSummary(true);
     showSummary();
     return;
   }
 
-  setShowValidationSummary(false);
-  setIsSubmitting(true);
-
   try {
-    const { mid, ...ownerData } = formData;
+    setIsSubmitting(true);
 
     const payload = {
-      ...ownerData,
+      ...formData,
       mailerIds: (formData.mailerIds || []).filter(
-        (mid) => mid.trim() !== ''
+        (id) => id && id.trim() !== ''
       ),
-      ...(!isEdit && { company: user.company?._id }),
-      ...(isEdit && { id: ownerData._id }),
     };
+
+    // Add company ID when creating
+    if (!isEdit) {
+      payload.company = user.company._id;
+    }
 
     let response;
 
+    // Save Mail Owner
     if (isEdit) {
       response = await api.put('/permits/updatemailowner', payload);
-      toast.success('Mail Owner updated');
+      toast.success('Mail Owner updated successfully!');
     } else {
       response = await api.post('/permits/addmailowner', payload);
-      toast.success('Mail Owner added');
+      toast.success('Mail Owner created successfully!');
     }
 
-    // If launched from the campaign form, return there after creating.
-
-    // If launched from the campaign form, return there after creating.
+    // Return to the page that opened this form
     if (!isEdit && location.state?.returnTo) {
       const responseData = response.data;
 
-      const returnedOwner =
-        responseData?.mailOwner ||
-        responseData?.owner ||
-        responseData?.data?.mailOwner ||
-        responseData?.data?.owner ||
-        responseData?.data ||
-        {};
+    const returnedOwner =
+  responseData?.mailowner ||
+  responseData?.mailOwner ||
+  responseData?.owner ||
+  responseData?.data?.mailowner ||
+  responseData?.data?.mailOwner ||
+  responseData?.data?.owner ||
+  responseData?.data ||
+  {};
 
-      // Use the submitted values if the API only returns a success message.
-      const ownerForCampaign = {
+      const savedMailOwner = {
         ...formData,
         ...payload,
         ...returnedOwner,
+
         _id:
           returnedOwner?._id ||
           returnedOwner?.id ||
           responseData?._id ||
           responseData?.id ||
           '',
+
         crid: String(
           returnedOwner?.crid ??
           returnedOwner?.CRID ??
           payload.crid ??
           ''
         ),
+
         companyName:
-          returnedOwner?.companyName ??
-          payload.companyName ??
+          returnedOwner?.companyName ||
+          payload.companyName ||
           '',
+
         mailOwnerName:
-          returnedOwner?.mailOwnerName ??
-          payload.mailOwnerName ??
+          returnedOwner?.mailOwnerName ||
+          payload.mailOwnerName ||
           '',
       };
+
+      if (!savedMailOwner._id) {
+        toast.error(
+          'Mail Owner was saved, but the API did not return its ID.'
+        );
+        return;
+      }
 
       navigate(location.state.returnTo, {
         replace: true,
         state: {
-          campaignDraft: location.state.campaignDraft,
-          createdMailOwner: ownerForCampaign,
+          returnData: location.state.returnData,
+          createdItem: {
+            type: location.state.returnType || 'mailOwner',
+            item: savedMailOwner,
+          },
         },
       });
 
       return;
     }
 
-    // Normal behavior when opened from the Mail Owners dashboard.
+    // Normal navigation
     navigate('/permits?tab=mail-owners');
 
-  } catch (err) {
-    setApiErrors(parseApiErrors(err));
-    toast.error('Unable to save. Review the errors below.');
-    showSummary();
+  } catch (error) {
+    console.error('Mail Owner save error:', error);
+
+    toast.error(
+      error.response?.data?.message ||
+      'Unable to save Mail Owner.'
+    );
+
   } finally {
     setIsSubmitting(false);
   }
 };
-
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
@@ -463,17 +481,7 @@ const enteredMids = (formData.mailerIds || [])
         <button
           type="button"
           className="btn-primary"
-       onClick={() => {
-  if (location.state?.returnTo) {
-    navigate(location.state.returnTo, {
-      state: {
-        campaignDraft: location.state.campaignDraft,
-      },
-    });
-  } else {
-    navigate('/permits?tab=mail-owners');
-  }
-}}
+      onClick={() => goBackToCaller(navigate, location, '/permits?tab=mail-owners')}
         >
           ← Back to Mail Owners
         </button>
@@ -727,11 +735,20 @@ error={errors.anywhere}
           </div>
         </section>
 
-        <div className="pt-2">
+  <div className="suppression-form-footer">
+          <button
+            type="button"
+            className="suppression-cancel-button"
+            onClick={() => goBackToCaller(navigate, location, '/permits?tab=mail-owners')}
+            disabled={isSubmitting}
+          >
+            Cancel
+          </button>
+
           <button
             type="submit"
+            className="suppression-save-button"
             disabled={isSubmitting}
-           className="px-5 py-2.5 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition"
           >
             {isSubmitting
               ? 'Saving...'
@@ -740,6 +757,7 @@ error={errors.anywhere}
                 : 'Save Mail Owner'}
           </button>
         </div>
+
       </form>
     </div>
   );
